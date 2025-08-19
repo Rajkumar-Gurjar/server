@@ -59,7 +59,7 @@ class UserController{
                 maxAge: 2 * 24 * 60 * 60 * 1000,
             });
             res.status(200).json({
-             message:"Login sucessful",
+             message:"Login successful",
              role: user.role,
              name: user.name,
              email: user.email,
