@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
-const bookingSchema = new Schema(
+const bookingSchema = new mongoose.Schema(
     {
         course: {
             type: mongoose.Schema.Types.ObjectId,
@@ -14,7 +14,7 @@ const bookingSchema = new Schema(
             required: true,
         },
         date: {
-            tyep: Date,
+            type: Date,
             default: Date.now,
         },
         status : {
@@ -30,4 +30,5 @@ const bookingSchema = new Schema(
     { timestamps: true}
 );
 
-module.exports = mongoose.model("Booking", bookingSchema);
+const BookingModel = mongoose.model("Booking", bookingSchema)
+module.exports = BookingModel;

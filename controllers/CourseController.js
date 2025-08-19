@@ -28,8 +28,11 @@ class CourseController {
             const {title,description,price,duration} = req.body
             const file = req.files.image
             const imageUpload = await cloudinary.uploader.upload(file.tempFilePath,{
-                folder:"courseImage"
-            })
+                folder:'courseImage'
+            }
+        )
+
+
             const data = await CourseModel.create({
                 title,
                 description,
@@ -64,9 +67,7 @@ class CourseController {
                 price,
                 duration
             })
-            res.json({
-                msg:"update contact success"
-            })
+            res.json(data)
         } catch (error) {
             console.log(error)
         }
@@ -76,11 +77,11 @@ class CourseController {
             const id = req.params.id
             const data = await CourseModel.findByIdAndDelete(id)
             res.json({
-                msg:"delete contact success"
+                msg:"delete success"
             })
         } catch (error) {
             console.log(error)
         }
     }
 }
-module.exports = CourseController
+module.exports = CourseController;

@@ -7,7 +7,7 @@ const checkAuth = async (req,res,next)=>{
     if(!token) return res.status(401).json({message:"Unauthorized"});
 
     try {
-        const decoded = jwt.verify(token, '7974266426');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
         // console.log(decoded)
 
         // fetch full user from DB
@@ -21,4 +21,4 @@ const checkAuth = async (req,res,next)=>{
         res.status(401).json({message:"Invalid token"});
     }
 }
-module.exports = checkAuth
+module.exports = checkAuth;

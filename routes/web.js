@@ -1,11 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const checkAuth = require('../middleware/auth')
 
 const ContactController = require('../controllers/ContactController');
 const TeacherController = require('../controllers/TeacherController')
 const CourseController = require('../controllers/CourseController');
 const UserController = require('../controllers/UserController');
+const BookingController = require('../controllers/BookingController')
+const router = express.Router();
+const checkAuth = require('../middleware/auth')
 
 // teacher
 router.get('/teacher', TeacherController.display);
@@ -30,6 +31,12 @@ router.post('/register',UserController.register)
 router.post('/login',UserController.login)
 router.get('/profile',checkAuth,UserController.profile)
 router.get('/logout',UserController.logout)
+
+
+//booking 
+router.post('/booking/create/:courseId',checkAuth,BookingController.createbooking)
+router.get('/booking/mybookings', checkAuth, BookingController.getUserBookings)
+router.get('/admin/bookings',checkAuth, BookingController.getAllBookings)
 
 
 // router.get('/',(req,res)=>{

@@ -13,12 +13,12 @@ class UserController{
                 return res.status(400).json({message: "Email already exists"})
             }
             // hash password
-            const hashPassword = await bcrypt.hash(password,10)
+            const hashedPassword = await bcrypt.hash(password,10)
             const data = await UserModel.create({
                 name,
                 email,
-                password:hashPassword
-            })
+                password:hashedPassword
+            });
             res.json({
                 data,
                 msg:"user register success"
@@ -44,7 +44,11 @@ class UserController{
                 return res.status(400).json({message: "Invalid credentials"});
             }
             // token create
-            const token = jwt.sign({ ID: user._id },process.env.JWT_SECRET,{expireIn:"2d"});
+            const token = jwt.sign(
+              { ID: user._id },
+              process.env.JWT_SECRET,
+              {expireIn:"2d"}
+            );
             // console.log(token)
 
             // Send token in HTTP-Only cookie
@@ -85,4 +89,4 @@ class UserController{
 
 }
 
-module.exports = UserController
+module.exports = UserController;
