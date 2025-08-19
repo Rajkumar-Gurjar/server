@@ -23,11 +23,15 @@ const cookieParser = require('cookie-parser')
 const cors = require("cors")
 
 
-
-
-
-
-
+// ✅ Fix: remove trailing slash + allow methods + headers
+app.use(
+  cors({
+    origin: "https://coursebooking257.netlify.app", // no trailing slash
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true, // allow cookies
+  })
+);
 
 // token get cookie
 app.use(cookieParser())
