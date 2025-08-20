@@ -69,7 +69,7 @@ class BookingController {
 
             //Format response
             const formatted = bookings.map(b => ({
-                _id:b._id,
+                id:b._id,
                 username:b.user.name,
                 userEmail:b.user.email,
                 courseTitle:b.course.title,
